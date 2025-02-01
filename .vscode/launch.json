@@ -7,15 +7,15 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'reddit-liker'",
+            "name": "Debug executable 'reddit-badges'",
             "cargo": {
                 "args": [
                     "build",
-                    "--bin=reddit-liker",
-                    "--package=reddit-liker"
+                    "--bin=reddit-badges",
+                    "--package=reddit-badges"
                 ],
                 "filter": {
-                    "name": "reddit-liker",
+                    "name": "reddit-badges",
                     "kind": "bin"
                 }
             },
@@ -25,16 +25,16 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug unit tests in executable 'reddit-liker'",
+            "name": "Debug unit tests in executable 'reddit-badges'",
             "cargo": {
                 "args": [
                     "test",
                     "--no-run",
-                    "--bin=reddit-liker",
-                    "--package=reddit-liker"
+                    "--bin=reddit-badges",
+                    "--package=reddit-badges"
                 ],
                 "filter": {
-                    "name": "reddit-liker",
+                    "name": "reddit-badges",
                     "kind": "bin"
                 }
             },

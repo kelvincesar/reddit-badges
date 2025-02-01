@@ -863,7 +863,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "reddit-liker"
+name = "reddit-badges"
 version = "0.1.0"
 dependencies = [
  "clap",

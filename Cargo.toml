@@ -1,5 +1,5 @@
 [package]
-name = "reddit-liker"
+name = "reddit-badges"
 authors = ["Kelvin César de Andrade"]
 version = "0.1.0"
 edition = "2021"
