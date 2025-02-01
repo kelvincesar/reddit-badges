@@ -8,7 +8,7 @@ on:
 jobs:
   daily-job:
     runs-on: ubuntu-latest
-    environment: prd
+    environment: runner
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
