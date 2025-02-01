@@ -1,6 +1,5 @@
 use clap::Parser;
 
-
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 pub struct Args {
@@ -8,19 +7,23 @@ pub struct Args {
     #[arg(short, long, default_value = "fujifilm")]
     subreddit: String,
 
-    /// Reddit client ID
+    /// Reddit client ID.
+    /// Enclose it in quotes to prevent shell expansion
     #[arg(long)]
     client_id: String,
 
-    /// Reddit client secret
+    /// Reddit client secret.
+    /// Enclose it in quotes to prevent shell expansion
     #[arg(long)]
     client_secret: String,
-        
-    /// Reddit username
+
+    /// Reddit username.
+    /// Enclose it in quotes to prevent shell expansion
     #[arg(long)]
     username: String,
 
-    /// Reddit password
+    /// Reddit password.
+    /// Enclose it in quotes to prevent shell expansion
     #[arg(long)]
     password: String,
 }
@@ -41,7 +44,4 @@ impl Args {
     pub fn get_password(&self) -> &str {
         &self.password
     }
-    
 }
-
-
