@@ -33,8 +33,9 @@ jobs:
           SUB_REDDIT: ${{ vars.REDDIT_SUB }}
         run: |
           ./target/release/reddit-badges \
-            --client-id '$CLIENT_ID' \
-            --client-secret '$CLIENT_SECRET' \
-            --username '$USERNAME' \
-            --password '$PASSWORD' \
-            --subreddit '$SUB_REDDIT'
+            --client-id "$CLIENT_ID" \
+            --client-secret "$CLIENT_SECRET" \
+            --username "$USERNAME" \
+            --password "$PASSWORD" \
+            --subreddit "$SUB_REDDIT"
+
