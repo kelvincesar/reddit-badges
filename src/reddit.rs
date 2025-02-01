@@ -36,8 +36,9 @@ pub struct RedditBuilder<'a> {
 }
 impl<'a> RedditBuilder<'a> {
     pub fn new(config: &'a RedditConfig<'a>) -> Self {
+        let user_agent = format!("RedditBadge/0.1 by {}", config.username);
         let client = Client::builder()
-            .user_agent("Liker/0.1 by Background-Log6333")
+            .user_agent(user_agent)
             .build()
             .expect("Failed to build reqwest client");
         RedditBuilder {

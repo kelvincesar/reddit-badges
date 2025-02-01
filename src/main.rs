@@ -14,7 +14,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         username: args.get_username(),
         password: args.get_password(),
     };
-    println!("{:?}", args);
 
     let client = reddit::RedditBuilder::new(&config)
         .try_authenticate()

@@ -2,13 +2,13 @@ name: Daily Run
 
 on:
   schedule:
-    # Runs daily at 18:00 local time (GMT-03).
-    - cron: '0 18 * * *'
+    - cron: '0 7 * * *'
   workflow_dispatch:
 
 jobs:
   daily-job:
     runs-on: ubuntu-latest
+    environment: prd
     env:
       CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
       CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
