@@ -9,13 +9,6 @@ jobs:
   daily-job:
     runs-on: ubuntu-latest
     environment: prd
-    env:
-      CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
-      CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
-      USERNAME: ${{ secrets.REDDIT_USERNAME }}
-      PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
-      SUB_REDDIT: ${{ vars.REDDIT_SUB }}
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -32,10 +25,16 @@ jobs:
         run: cargo build --release
 
       - name: Run reddit-badges
+        env:
+          CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          USERNAME: ${{ secrets.REDDIT_USERNAME }}
+          PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+          SUB_REDDIT: ${{ vars.REDDIT_SUB }}
         run: |
           ./target/release/reddit-badges \
-            --client-id "$CLIENT_ID" \
-            --client-secret "$CLIENT_SECRET" \
-            --username "$USERNAME" \
-            --password "$PASSWORD" \
-            --subreddit "$SUB_REDDIT"
+            --client-id '$CLIENT_ID' \
+            --client-secret '$CLIENT_SECRET' \
+            --username '$USERNAME' \
+            --password '$PASSWORD' \
+            --subreddit '$SUB_REDDIT'
