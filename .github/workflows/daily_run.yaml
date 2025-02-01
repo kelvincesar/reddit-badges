@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  run-job:
+  daily-job:
     runs-on: ubuntu-latest
     env:
       CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
