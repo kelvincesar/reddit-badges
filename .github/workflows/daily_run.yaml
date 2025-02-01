@@ -1,4 +1,4 @@
-name: Daily Run with Nix Environment
+name: Daily Run
 
 on:
   schedule:
@@ -49,10 +49,10 @@ jobs:
 
       - name: Run reddit-badges
         run: |
-          nix develop .#devShells.x86_64-linux.default --command bash -c "
+          nix develop .#devShells.x86_64-linux.default --command bash -c " \
             ./target/release/reddit-badges \
-              --client-id '$CLIENT_ID' \
-              --client-secret '"$CLIENT_SECRET' \
-              --username '$USERNAME' \
-              --password '$PASSWORD' \
-              --subreddit '$SUBREDDIT'
+              --client-id \"$CLIENT_ID\" \
+              --client-secret \"$CLIENT_SECRET\" \
+              --username \"$USERNAME\" \
+              --password \"$PASSWORD\" \
+              --subreddit \"$SUB_REDDIT\""

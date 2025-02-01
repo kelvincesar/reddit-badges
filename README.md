@@ -22,4 +22,4 @@ Options:
 
 ## Development
 
-You can use `nix develop` to build the project.# reddit-badges
+You can use `nix develop` to build the project.
