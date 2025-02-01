@@ -17,42 +17,25 @@ jobs:
       SUB_REDDIT: ${{ vars.REDDIT_SUB}}
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-
-      - name: Cache Cargo Registry
-        uses: actions/cache@v3
+     - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          path: ~/.cargo/registry
-          key: ${{ runner.os }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+          fetch-depth: 0
 
-      - name: Cache Cargo Target
-        uses: actions/cache@v3
-        with:
-          path: target
-          key: ${{ runner.os }}-cargo-target-${{ hashFiles('**/Cargo.lock') }}
-          
-      - name: Install Nix with Flakes Enabled
-        uses: cachix/install-nix-action@v17
-        with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
 
-      - name: Verify Nix Installation
-        run: nix --version
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2
 
-      - name: Build the project
-        run: |
-          nix develop .#devShells.x86_64-linux.default --command bash -c "
-            cargo build --release
-          "
+      - name: Build 
+        run: cargo build --release
 
       - name: Run reddit-badges
         run: |
-          nix develop .#devShells.x86_64-linux.default --command bash -c " \
-            ./target/release/reddit-badges \
-              --client-id \"$CLIENT_ID\" \
-              --client-secret \"$CLIENT_SECRET\" \
-              --username \"$USERNAME\" \
-              --password \"$PASSWORD\" \
-              --subreddit \"$SUB_REDDIT\""
+          ./target/release/reddit-badges \
+              --client-id '$CLIENT_ID' \
+              --client-secret '$CLIENT_SECRET' \
+              --username '$USERNAME' \
+              --password '$PASSWORD' \
+              --subreddit '$SUB_REDDIT'
