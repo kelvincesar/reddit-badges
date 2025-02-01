@@ -2,8 +2,8 @@ name: Daily Run
 
 on:
   schedule:
-      # Runs daily at 7:00 GMT-03.
-    - cron: '0 10 * * *'
+    # Runs daily at 18:00 local time (GMT-03).
+    - cron: '0 18 * * *'
   workflow_dispatch:
 
 jobs:
@@ -12,12 +12,12 @@ jobs:
     env:
       CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
       CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
-      USERNAME: ${{ secrets.REDDIT_PASSWORD }}
-      PASSWORD: ${{ secrets.REDDIT_USERNAME }}
-      SUB_REDDIT: ${{ vars.REDDIT_SUB}}
+      USERNAME: ${{ secrets.REDDIT_USERNAME }}
+      PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+      SUB_REDDIT: ${{ vars.REDDIT_SUB }}
 
     steps:
-     - name: Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -28,14 +28,14 @@ jobs:
       - name: Rust Cache
         uses: Swatinem/rust-cache@v2
 
-      - name: Build 
+      - name: Build
         run: cargo build --release
 
       - name: Run reddit-badges
         run: |
           ./target/release/reddit-badges \
-              --client-id '$CLIENT_ID' \
-              --client-secret '$CLIENT_SECRET' \
-              --username '$USERNAME' \
-              --password '$PASSWORD' \
-              --subreddit '$SUB_REDDIT'
+            --client-id "$CLIENT_ID" \
+            --client-secret "$CLIENT_SECRET" \
+            --username "$USERNAME" \
+            --password "$PASSWORD" \
+            --subreddit "$SUB_REDDIT"
