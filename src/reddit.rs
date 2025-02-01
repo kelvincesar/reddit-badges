@@ -1,7 +1,6 @@
 use serde::Deserialize;
 use reqwest::Client;
 
-use crate::environment;
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct Post {
@@ -24,13 +23,20 @@ struct PostWrapper {
     data: Post,
 }
 
-pub struct RedditBuilder {
-    config: environment::Config,
+pub struct RedditConfig<'a> {
+    pub client_id: &'a str,
+    pub client_secret: &'a str,
+    pub username: &'a str,
+    pub password: &'a str,
+}
+
+pub struct RedditBuilder<'a> {
+    config: &'a RedditConfig<'a>,
     client: Client,
     token: Option<String>,
 }
-impl RedditBuilder {
-    pub fn new(config: environment::Config) -> Self {
+impl<'a> RedditBuilder<'a> {
+    pub fn new(config: &'a RedditConfig<'a>) -> Self {
         let client = Client::builder()
             .user_agent("Liker/0.1 by Background-Log6333")
             .build().expect( "Failed to build reqwest client");
