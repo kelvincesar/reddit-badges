@@ -15,8 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    env:
-      CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+    environment: prd
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -47,4 +46,4 @@ jobs:
           command: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CARGO_REGISTRY_TOKEN: $CARGO_REGISTRY_TOKEN
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATE_IO_TOKEN }}
