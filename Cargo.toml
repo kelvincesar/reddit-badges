@@ -1,8 +1,18 @@
 [package]
 name = "reddit-badges"
 authors = ["Kelvin César de Andrade"]
+description = "A Rust interface with Reddit API to like on defined subredits. Help to get badges."
+keywords = ["reddit", "badges", "rust"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/kelvincesar/reddit-badges"
 version = "0.1.0"
 edition = "2021"
+exclude = [
+    ".vscode/*",
+    "*.nix",
+    "flake.lock",
+]
 
 [dependencies]
 clap = { version = "4.5.27", features = ["derive"] }
